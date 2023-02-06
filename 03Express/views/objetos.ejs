@@ -1,0 +1,48 @@
+
+<%- include("template/cabecera.ejs", {tituloWeb:'Panel de Administración'}) %>
+
+<div class="container">
+    <!--Si existen elementos en el array de Objetos-->
+    <% if (arrayObjetos.length > 0) { %>
+     <!--Haremos el foreach para recorrer el array-->
+     <% arrayObjetos.forEach(objetos => { %>
+       <!--Aquí podremos mostrar todos los objetos en una tabla-->
+     <% }) %>
+    <% } %>
+</div>
+
+
+<div class="container">
+    <h1>Objetos</h1>
+    <a class="btn btn-info btn-block my-4" href="/objetos/crear_objetos">Crear un nuevo Objeto</a>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Objeto</th>
+                <th scope="col">Categoría</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Acción</th>
+              
+            </tr>
+        </thead>
+        <tbody>
+            <% if (arrayObjetos.length> 0) { %>
+                <!--Haremos el foreach para recorrer el array-->
+                <% arrayObjetos.forEach(objetos => { %>
+                    <tr>
+                        <th scope="row"><%= objetos.id %></th>
+                        <td><%= objetos.objeto %></td>
+                        <td><%= objetos.categoria %></td>
+                        <td><%= objetos.descripcion %></td>
+                        <td>
+                            <a class="btn btn-warning btn-sm" href="objetos/<%= objetos.id %>">Editar/Eliminar</a>
+                    </tr>
+                <% }) %>
+            <% } %>
+      </tbody>
+    </table>
+</div>
+    
+
+<%- include("template/footer.ejs") %>

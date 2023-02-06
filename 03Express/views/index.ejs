@@ -1,7 +1,30 @@
 <%- include("template/cabecera.ejs", {tituloWeb:'Inicio'}) %>
 
-<body>
-    <h2>
-        <%= titulo %>
-    </h2>
+<main>
+
+    <div class="container marketing">
+        <hr class="featurette-divider">
+  
+      <div class="row">
+        <div class="col-lg-4">
+          <h2 class="fw-normal">Entrenadores</h2>
+          <p>Conoce a todos nuestros entrenadores estrellas</p>
+          <p><a class="btn btn-danger" href="./entrenador">Click aquí &raquo;</a></p>
+        </div>
+        <div class="col-lg-4">
+          <h2 class="fw-normal">Pokemon</h2>
+          <p>Aquí podrás encontrar todas los pokemon que existan.</p>
+          <p><a class="btn btn-warning" href="./pokemon">Click aquí &raquo;</a></p>
+        </div>
+        <div class="col-lg-4">
+          <h2 class="fw-normal">Objetos</h2>
+          <p>Todos los objetos necesarios para mejorar las batallas.</p>
+          <p><a class="btn btn-primary" href="./objetos">Click aquí &raquo;</a></p>
+        </div>
+      </div>
+    </div>
+  
+     
+  
+
 <%- include("template/footer") %>

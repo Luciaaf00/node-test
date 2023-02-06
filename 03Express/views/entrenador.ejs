@@ -1,0 +1,50 @@
+
+<%- include("template/cabecera.ejs", {tituloWeb:'Panel de Administración'}) %>
+<body>
+<div class="container">
+    <!--Si existen elementos en el array de Pokemon-->
+    <% if (arrayEntrenador.length > 0) { %>
+     <!--Haremos el foreach para recorrer el array-->
+     <% arrayEntrenador.forEach(entrenador => { %>
+       <!--Aquí podremos mostrar todos los entrenadores en una tabla-->
+     <% }) %>
+    <% } %>
+</div>
+
+
+<div class="container">
+    <h1>Entrenadores</h1>
+    <a class="btn btn-info btn-block my-4" href="/entrenador/crear_entrenador">Crear un nuevo entrenador</a>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Medallas</th>
+                <th scope="col">Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (arrayEntrenador.length> 0) { %>
+                <!--Haremos el foreach para recorrer el array-->
+                <% arrayEntrenador.forEach(entrenador => { %>
+                    <tr>
+                        <th scope="row"><%= entrenador.id %></th>
+                        <td><%= entrenador.nombre %></td>
+                        <td><%= entrenador.edad %></td>
+                        <td><%= entrenador.descripcion %></td>
+                        <td><%= entrenador.medallas %></td>
+                        
+                        <td>
+                            <a class="btn btn-warning btn-sm" href="entrenador/<%= entrenador.id %>">Editar/Eliminar</a>
+                    </tr>
+                <% }) %>
+            <% } %>
+      </tbody>
+    </table>
+</div>
+    
+
+<%- include("template/footer.ejs") %>

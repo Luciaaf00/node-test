@@ -44,7 +44,8 @@ app.get('/contacto', (req, res) => {
 //Llamadas a las rutas
 app.use('/', require('./router/rutas'))
 app.use('/pokemon', require('./router/pokemon'))
-
+app.use('/entrenador', require('./router/entrenador'))
+app.use('/objetos', require('./router/objetos'))
 //Error controller
 app.use((req,res)=> {
     //res.status(404).sendFile(__dirname+"/public/404.html")
