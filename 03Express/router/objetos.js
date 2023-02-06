@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 })
 module.exports = router;
 router.get('/crear_objetos', (req, res) => {
-    res.render('crear_objetos'); //nueva vista que llamaremos Crear
+    res.render('crear_objetos'); //nueva vista que llamaremos Crear_objetos
  })
  
 router.post('/', async (req, res) => {
@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
     //podremos recuperar todo lo que viene del body
     console.log(body) //Para comprobarlo por pantalla
     try {
-        const arrayObjetos = new Objetos(body) //Creamos un nuevo Entrenador, gracias al modelo
+        const arrayObjetos = new Objetos(body) //Creamos un nuevo Objetos, gracias al modelo
         await arrayObjetos.save() //Lo guardamos con .save(), gracias a Mongoose
         res.redirect('/objetos') //Volvemos al listado
     } catch (error) {
@@ -35,20 +35,20 @@ router.post('/', async (req, res) => {
 })
  
 router.get('/:id', async(req, res) => { //El id vendrá por el GET (barra de direcciones)
-    const id = req.params.id //Recordemos que en la plantilla "pokemon.ejs" le pusimos
-    //a este campo pokemon.id, por eso lo llamados con params.id
+    const id = req.params.id //Recordemos que en la plantilla "objetos.ejs" le pusimos
+    //a este campo objetos.id, por eso lo llamados con params.id
     try {
         const objetosDB = await Objetos.findOne({ _id: id }) //_id porque así lo indica Mongo
-							//Esta variable “Pokemon” está definida arriba con el “require”
+							//Esta variable Objetos está definida arriba con el “require”
         //Buscamos con Mongoose un único documento que coincida con el id indicado
         console.log(objetosDB) //Para probarlo por consola
-        res.render('detalle_objetos', { //Para mostrar el objeto en la vista "detalle", que tenemos que crear
+        res.render('detalle_objetos', { //Para mostrar el objeto en la vista "detalle_objetos", que tenemos que crear
             objetos: objetosDB,
             error: false
         })
     } catch (error) { //Si el id indicado no se encuentra
         console.log('Se ha producido un error', error)
-        res.render('detalle_objetos', { //Mostraremos el error en la vista "detalle"
+        res.render('detalle_objetos', { //Mostraremos el error en la vista "detalle_objetos"
             error: true,
             mensaje: 'Objetos no encontrado!'
         })
@@ -63,7 +63,7 @@ router.delete('/:id', async (req, res) => {
         const objetosDB = await Objetos.findByIdAndDelete({ _id: id });
         console.log(objetosDB)
         // https://stackoverflow.com/questions/27202075/expressjs-res-redirect-not-working-as-expected
-        // res.redirect('/pokemon') //Esto daría un error, tal y como podemos ver arriba
+        // res.redirect('/objetos') //Esto daría un error, tal y como podemos ver arriba
         if (!objetosDB) {
             res.json({ 
                 estado: false,

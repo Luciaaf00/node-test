@@ -4,9 +4,9 @@ const Entrenador = require('../models/entrenador');
 
 router.get('/', async (req, res) => {
     try {
-        //Le pondremos arrayPokemonDB para diferenciar
+        //Le pondremos arrayEntrenadorDB para diferenciar
         //los datos que vienen de la base de datos
-        //con respecto al arrayPokemon que tenemos EN LA VISTA
+        //con respecto al arrayEntrenador que tenemos EN LA VISTA
         const arrayEntrenadorDB = await Entrenador.find();
         console.log(arrayEntrenadorDB);
         res.render("entrenador", { 
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 })
 module.exports = router;
 router.get('/crear_entrenador', (req, res) => {
-    res.render('crear_entrenador'); //nueva vista que llamaremos Crear
+    res.render('crear_entrenador'); //nueva vista que llamaremos Crear_entrenador
  })
  
 router.post('/', async (req, res) => {
@@ -35,20 +35,20 @@ router.post('/', async (req, res) => {
 })
  
 router.get('/:id', async(req, res) => { //El id vendrá por el GET (barra de direcciones)
-    const id = req.params.id //Recordemos que en la plantilla "pokemon.ejs" le pusimos
-    //a este campo pokemon.id, por eso lo llamados con params.id
+    const id = req.params.id //Recordemos que en la plantilla "entrenador.ejs" le pusimos
+    //a este campo entrenador.id, por eso lo llamados con params.id
     try {
         const entrenadorDB = await Entrenador.findOne({ _id: id }) //_id porque así lo indica Mongo
-							//Esta variable “Pokemon” está definida arriba con el “require”
+							//Esta variable “Entrenador” está definida arriba con el “require”
         //Buscamos con Mongoose un único documento que coincida con el id indicado
         console.log(entrenadorDB) //Para probarlo por consola
-        res.render('detalle_entrenador', { //Para mostrar el objeto en la vista "detalle", que tenemos que crear
+        res.render('detalle_entrenador', { //Para mostrar el objeto en la vista "detalle_entrenador", que tenemos que crear
             entrenador: entrenadorDB,
             error: false
         })
     } catch (error) { //Si el id indicado no se encuentra
         console.log('Se ha producido un error', error)
-        res.render('detalle_entrenador', { //Mostraremos el error en la vista "detalle"
+        res.render('detalle_entrenador', { //Mostraremos el error en la vista "detalle_entrenador"
             error: true,
             mensaje: 'Entrenador no encontrado!'
         })
@@ -63,7 +63,7 @@ router.delete('/:id', async (req, res) => {
         const entrenadorDB = await Entrenador.findByIdAndDelete({ _id: id });
         console.log(entrenadorDB)
         // https://stackoverflow.com/questions/27202075/expressjs-res-redirect-not-working-as-expected
-        // res.redirect('/pokemon') //Esto daría un error, tal y como podemos ver arriba
+        // res.redirect('/entrenador') //Esto daría un error, tal y como podemos ver arriba
         if (!entrenadorDB) {
             res.json({ 
                 estado: false,
